@@ -34,7 +34,7 @@ struct RecipeListView: View {
                 )
                 
             }
-            .navigationBarTitle(Text("My recipes"))
+            .navigationBarTitle(Text("Recipes"))
             
         }
         .navigationViewStyle(.stack)
