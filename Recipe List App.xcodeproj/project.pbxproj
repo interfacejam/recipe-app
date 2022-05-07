@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CABFB1F62826F729005DA084 /* GithubDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABFB1F52826F729005DA084 /* GithubDemoView.swift */; };
 		CAEDA949281EAE0A0024F366 /* Recipe_List_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA948281EAE0A0024F366 /* Recipe_List_App.swift */; };
 		CAEDA94B281EAE0A0024F366 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA94A281EAE0A0024F366 /* RecipeListView.swift */; };
 		CAEDA94D281EAE0B0024F366 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAEDA94C281EAE0B0024F366 /* Assets.xcassets */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CABFB1F52826F729005DA084 /* GithubDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubDemoView.swift; sourceTree = "<group>"; };
 		CAEDA945281EAE0A0024F366 /* Recipe List App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe List App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEDA948281EAE0A0024F366 /* Recipe_List_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_List_App.swift; sourceTree = "<group>"; };
 		CAEDA94A281EAE0A0024F366 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			children = (
 				CAEDA94A281EAE0A0024F366 /* RecipeListView.swift */,
 				CAEDA981282036A10024F366 /* RecipeDetailView.swift */,
-				CABFB1F52826F729005DA084 /* GithubDemoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +193,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CABFB1F62826F729005DA084 /* GithubDemoView.swift in Sources */,
 				CAEDA960281EC94A0024F366 /* Recipe.swift in Sources */,
 				CAEDA982282036A10024F366 /* RecipeDetailView.swift in Sources */,
 				CAEDA962281ECA730024F366 /* RecipeModel.swift in Sources */,
