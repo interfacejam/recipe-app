@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GithubDemoView: View {
     var body: some View {
-        Text("Hello people!")
+        Text("Hello devs!")
     }
 }
 
