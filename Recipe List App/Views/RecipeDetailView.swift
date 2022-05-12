@@ -21,10 +21,12 @@ struct RecipeDetailView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                 
+                // MARK: Recipe image
                 Image(recipe.image)
                     .resizable()
                     .scaledToFill()
                 
+                // MARK: Ingredients
                 VStack(alignment: .leading, spacing: 24.0){
                 
                     VStack(alignment: .leading) {
@@ -33,16 +35,28 @@ struct RecipeDetailView: View {
                             .fontWeight(.semibold)
                             .padding(.bottom, 4.0)
                         
+                        
                         ForEach(recipe.ingredients, id: \.self){ item in
-                            
-                            HStack(alignment: .top, spacing: 4.0){
-                                Text("•")
-                                Text(item)
-                            }
-                            .padding(.bottom, 1)
+                        
+                                HStack(alignment: .top, spacing: 4.0){
+                                    
+                                    if item.num != nil {
+                                        Text(String(item.num!))
+                                    }
+                                    if item.denom != nil {
+                                        Text("/" + String(item.denom!))
+                                    }
+                                    if item.unit != nil {
+                                        Text(String(item.unit!) +  " of")
+                                    }
+                                    Text(item.name)
+                                }
+                                .padding(.bottom, 1)
                         }
+                        
                     }
                     
+                    // MARK: Directions
                     VStack(alignment: .leading) {
                         Text("Method")
                             .font(.title)

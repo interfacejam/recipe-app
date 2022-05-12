@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0EEDD2282AF24700597540 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0EEDD1282AF24700597540 /* Ingredient.swift */; };
 		CABFB2122828239F005DA084 /* RecipeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABFB2112828239F005DA084 /* RecipeTabView.swift */; };
 		CAEDA949281EAE0A0024F366 /* Recipe_List_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA948281EAE0A0024F366 /* Recipe_List_App.swift */; };
 		CAEDA94B281EAE0A0024F366 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA94A281EAE0A0024F366 /* RecipeListView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0EEDD1282AF24700597540 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		CABFB2112828239F005DA084 /* RecipeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTabView.swift; sourceTree = "<group>"; };
 		CAEDA945281EAE0A0024F366 /* Recipe List App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe List App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEDA948281EAE0A0024F366 /* Recipe_List_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_List_App.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				CAEDA95F281EC94A0024F366 /* Recipe.swift */,
+				CA0EEDD1282AF24700597540 /* Ingredient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				CAEDA982282036A10024F366 /* RecipeDetailView.swift in Sources */,
 				CAEDA962281ECA730024F366 /* RecipeModel.swift in Sources */,
 				CAEDA94B281EAE0A0024F366 /* RecipeListView.swift in Sources */,
+				CA0EEDD2282AF24700597540 /* Ingredient.swift in Sources */,
 				CAEDA949281EAE0A0024F366 /* Recipe_List_App.swift in Sources */,
 				CAEDA964281ECC1F0024F366 /* DataService.swift in Sources */,
 				CABFB2122828239F005DA084 /* RecipeTabView.swift in Sources */,
