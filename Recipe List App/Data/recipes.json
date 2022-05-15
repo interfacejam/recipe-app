@@ -1,7 +1,7 @@
 [
    {
       "name":"Eggplant Parmesan",
-      "featured":false,
+      "featured":true,
       "image":"eggplant parmesan",
       "description":"Baked eggplant with bread crumbs and lots of cheese. Delicious!",
       "prepTime":"25 minutes",
