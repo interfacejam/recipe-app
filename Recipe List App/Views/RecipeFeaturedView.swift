@@ -18,7 +18,6 @@ struct RecipeFeaturedView: View {
             Text("Featured recipes")
                 .font(.largeTitle)
                 .bold()
-                .padding(.top, 49.5)
                 .padding(.horizontal)
             
             TabView {

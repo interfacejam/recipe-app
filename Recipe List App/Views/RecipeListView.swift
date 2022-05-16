@@ -12,33 +12,47 @@ struct RecipeListView: View {
     @EnvironmentObject var model:RecipeModel
     
     var body: some View {
-         
-        NavigationView{
         
-            List(model.recipes) { r in
+        NavigationView {
             
-                NavigationLink(
-                    destination: RecipeDetailView(recipe: r),
-                    label: {
-                        HStack(spacing: 16.0){
-                            Image(r.image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50, alignment: .center)
-                                .clipped()
-                                .cornerRadius(8)
-                            
-                            Text(r.name)
-                        }
-                    }
-                )
+            VStack(alignment: .leading) {
                 
+                Text("All recipes")
+                    .font(.largeTitle)
+                    .bold()
+                
+                ScrollView{
+                    
+                    LazyVStack (alignment: .leading) {
+                        ForEach(model.recipes) { r in
+                            
+                            NavigationLink(
+                                destination: RecipeDetailView(recipe: r),
+                                label: {
+                                    HStack(spacing: 16.0){
+                                        Image(r.image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50, alignment: .center)
+                                            .clipped()
+                                            .cornerRadius(8)
+                                        
+                                        Text(r.name)
+                                            .foregroundColor(.black)
+                                    }
+                                }
+                            )
+                            
+                        }
+                        .navigationBarHidden(true)
+                    }
+                    
+                }
             }
-            .navigationBarTitle(Text("Recipes"))
-            
+            .padding(.horizontal)
         }
         .navigationViewStyle(.stack)
-    
+        
     }
 }
 
