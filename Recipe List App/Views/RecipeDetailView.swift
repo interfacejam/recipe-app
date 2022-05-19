@@ -11,6 +11,8 @@ struct RecipeDetailView: View {
     
     var recipe: Recipe
     
+    @State private var selectedServingsSize:Int = 2
+    
     var body: some View {
         
         ScrollView {
@@ -30,6 +32,21 @@ struct RecipeDetailView: View {
                 VStack(alignment: .leading, spacing: 24.0){
                 
                     VStack(alignment: .leading) {
+                        
+                        Text("Select your serving size:")
+                            .font(.callout)
+                        
+                        Picker("Select servings", selection: $selectedServingsSize) {
+                            Text("2").tag(2)
+                            Text("4").tag(4)
+                            Text("6").tag(6)
+                            Text("8").tag(8)
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 180)
+                    }
+                    
+                    VStack(alignment: .leading) {
                         Text("Ingredients")
                             .font(.title)
                             .fontWeight(.semibold)
@@ -37,21 +54,22 @@ struct RecipeDetailView: View {
                         
                         
                         ForEach(recipe.ingredients, id: \.self){ item in
-                        
-                                HStack(alignment: .top, spacing: 4.0){
-                                    
-                                    if item.num != nil {
-                                        Text(String(item.num!))
-                                    }
-                                    if item.denom != nil {
-                                        Text("/" + String(item.denom!))
-                                    }
-                                    if item.unit != nil {
-                                        Text(String(item.unit!) +  " of")
-                                    }
-                                    Text(item.name)
-                                }
-                                .padding(.bottom, 1)
+                                
+                            Text("- " + RecipeModel.getPortion(ingredient: item, recipeServings: recipe.servings, targetServings: selectedServingsSize))
+//                                HStack(alignment: .top, spacing: 4.0){
+//
+//                                    if item.num != nil {
+//                                        Text(String(item.num!))
+//                                    }
+//                                    if item.denom != nil {
+//                                        Text("/" + String(item.denom!))
+//                                    }
+//                                    if item.unit != nil {
+//                                        Text(String(item.unit!) +  " of")
+//                                    }
+//                                    Text(item.name)
+//                                }
+//                                .padding(.bottom, 1)
                         }
                         
                     }

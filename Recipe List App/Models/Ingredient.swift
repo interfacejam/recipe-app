@@ -11,8 +11,8 @@ struct Ingredient: Identifiable, Decodable, Hashable {
     
     var id:UUID?
     var name: String
-    var num: Int?
-    var denom: Int?
+    var amount_whole: String?
+    var amount_fraction: String?
     var unit: String?
     
 }

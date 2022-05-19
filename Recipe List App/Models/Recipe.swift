@@ -16,7 +16,7 @@ struct Recipe: Identifiable, Decodable {
     var description: String
     var prepTime: String
     var cookTime: String
-    var servings: Int
+    var servings: String
     var highlights: [String]
     var ingredients: [Ingredient]
     var directions: [String]
