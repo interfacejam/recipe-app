@@ -54,22 +54,11 @@ struct RecipeDetailView: View {
                         
                         
                         ForEach(recipe.ingredients, id: \.self){ item in
-                                
-                            Text("- " + RecipeModel.getPortion(ingredient: item, recipeServings: recipe.servings, targetServings: selectedServingsSize))
-//                                HStack(alignment: .top, spacing: 4.0){
-//
-//                                    if item.num != nil {
-//                                        Text(String(item.num!))
-//                                    }
-//                                    if item.denom != nil {
-//                                        Text("/" + String(item.denom!))
-//                                    }
-//                                    if item.unit != nil {
-//                                        Text(String(item.unit!) +  " of")
-//                                    }
-//                                    Text(item.name)
-//                                }
-//                                .padding(.bottom, 1)
+                            
+                            HStack(alignment: .top) {
+                                Text("•")
+                                Text(RecipeModel.getPortion(ingredient: item, recipeServings: recipe.servings, targetServings: selectedServingsSize))
+                            }
                         }
                         
                     }

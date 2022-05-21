@@ -13,93 +13,117 @@ class RecipeModel: ObservableObject {
     
     init() {
              
-        // Set the recipes property
+        // Populate the array with the data
         self.recipes = DataService.getLocalData()
-        
     }
     
     static func getPortion(ingredient: Ingredient, recipeServings:String, targetServings:Int ) -> String {
         
-        var whole: Int
-        var num: Int
-        var den: Int
-        var unit: String = ""
-        let name: String = ingredient.name.lowercased()
+        var amount = ingredient.amount ?? ""
+        let unit = ingredient.unit?.lowercased()
+        var wholePortion: Int = 1
+        var num: Int = 1
+        var den: Int = 1
         
-        let output:String
+        //MARK: Parse the string and collect the values
         
-        if ingredient.unit != nil {
-            unit = ingredient.unit!.lowercased()
-        }
-        
-        // Get the single serving size by multiplying the denominator by the recipe servig size
-        
-        // it's a mixed number (whole + fraction)
-        if ingredient.amount_whole != nil && ingredient.amount_fraction != nil {
+        // If an amount is defined collect the numbers
+        if ingredient.amount != nil {
             
-            whole = Int(ingredient.amount_whole!)!
-            
-            let array = ingredient.amount_fraction?.components(separatedBy: "/")
-            
-            num = Int((array?[0])!)!
-            den = Int((array?[1])!)!
-            
-            output = String(String(whole) + " " + String(num) + "/" + String(den) + " " + unit + " of " + name)
-        }
-        
-        // it's a whole number
-        else if ingredient.amount_whole != nil {
-            
-            whole = Int(ingredient.amount_whole!)!
-            
-            if unit != "" {
+            // Get the whole portion
+            let amountString = amount.components(separatedBy: " ")
                 
-                output = String(String(whole) + " " + unit + " of " + name)
-            }
-            else
-            {
-                output = String(String(whole) + " " + name)
+            wholePortion = Int(amountString[0]) ?? 0
+            
+            if wholePortion == 0  {
+                
+                // It's a fraction
+                let fractionString = amountString[0].components(separatedBy: "/")
+                
+                num = Int(fractionString[0]) ?? 0
+                den = Int(fractionString[1]) ?? 0
+                
+            } else {
+                // It's a whole
+                num = wholePortion
             }
             
+            // If it's a mixed number
+            if amountString.count > 1 {
+                
+                let fractionString = amountString[1].components(separatedBy: "/")
+                
+                num = Int(fractionString[0]) ?? 0
+                den = Int(fractionString[1]) ?? 0
+                
+                // Get the improper number
+                num += wholePortion * den
             
+            }
+            // calculate the correct amount
+            amount = calculatePortion(num: num, den: den, recipeServings: recipeServings, targetServings: targetServings)
+    
+            if unit != nil {
+                amount += " " + unit! + " of"
+            }
+            
+            amount += " " + ingredient.name.lowercased()
         }
         
-        // it's a fraction
-        else if ingredient.amount_fraction != nil {
+        else
+        // If there's no amount
+        {
+            amount = ingredient.name
             
-            let array = ingredient.amount_fraction?.components(separatedBy: "/")
-            
-            num = Int((array?[0])!)!
-            den = Int((array?[1])!)!
-            
-            if unit != "" {
-                
-                output = String("\(num)/\(den)" + " " + unit + " of " + name)
+            if unit != nil {
+                amount += " " + unit!
             }
-            else
-            {
-                output = String("\(num)/\(den)" + " " + name)
+        }
+        
+        return amount
+    }
+    
+    //MARK: Calculate the portions
+    
+    static private func calculatePortion(num:Int, den:Int, recipeServings: String, targetServings:Int) -> String {
+        
+        var wholePortion: Int = 0
+        var num: Int = num
+        var den: Int = den
+        
+        let recipeServings = Int(recipeServings) ?? 0
+        var portion: String = ""
+        
+        // Get the single portion and multiply by the number of servings
+        num *= targetServings
+        den *= recipeServings
+        
+        // Find the greatest common divisor
+        let divisor = Rational.greatestCommonDivisor(num, den)
+        
+        // Simplify the fraction
+        num /= divisor
+        den /= divisor
+        
+        // Turn the improper number into a mixed number
+        if num >= den {
+            wholePortion = num / den
+            num %= den
+            
+            portion = String(wholePortion)
+            
+            // Express the remainder as a fraction
+            if num > 0 {
+                portion = String("\(wholePortion)  \(num)/\(den)")
             }
-            
-            
-            
+        
         }
         else
         {
-            output = String(name.capitalized + " " + unit)
+            portion += String("\(num)/\(den)")
         }
         
-        
-        return output
-        
-        // Get the target portions by multiplying the numerator by the target servings
-        
-        // Reduce the fraction by finding greatest common divisor (the highest number that can divide the numerator and denominator)
-        
-        // If the numerator is greater than the denominator get the whole portion (by dividing the numerator by the denominator and getting the remainder)
-        
-        // Express the remainder as a fraction
-        
+        return portion
     }
 }
 

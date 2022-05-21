@@ -19,6 +19,7 @@
 		CAEDA962281ECA730024F366 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA961281ECA730024F366 /* RecipeModel.swift */; };
 		CAEDA964281ECC1F0024F366 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA963281ECC1F0024F366 /* DataService.swift */; };
 		CAEDA982282036A10024F366 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDA981282036A10024F366 /* RecipeDetailView.swift */; };
+		CAF6CB0628376E3300610DB3 /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF6CB0528376E3300610DB3 /* Rational.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		CAEDA961281ECA730024F366 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		CAEDA963281ECC1F0024F366 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CAEDA981282036A10024F366 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		CAF6CB0528376E3300610DB3 /* Rational.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		CAEDA947281EAE0A0024F366 /* Recipe List App */ = {
 			isa = PBXGroup;
 			children = (
+				CAF6CB0428376E2600610DB3 /* Utilities */,
 				CAEDA948281EAE0A0024F366 /* Recipe_List_App.swift */,
 				CAEDA956281EAE510024F366 /* Views */,
 				CAEDA957281EAE5E0024F366 /* ViewModels */,
@@ -129,6 +132,14 @@
 				CAEDA963281ECC1F0024F366 /* DataService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CAF6CB0428376E2600610DB3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CAF6CB0528376E3300610DB3 /* Rational.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +218,7 @@
 				CAEDA962281ECA730024F366 /* RecipeModel.swift in Sources */,
 				CAEDA94B281EAE0A0024F366 /* RecipeListView.swift in Sources */,
 				CA0EEDD2282AF24700597540 /* Ingredient.swift in Sources */,
+				CAF6CB0628376E3300610DB3 /* Rational.swift in Sources */,
 				CA0EEDD4282CEB6A00597540 /* RecipeFeaturedView.swift in Sources */,
 				CAEDA949281EAE0A0024F366 /* Recipe_List_App.swift in Sources */,
 				CAEDA964281ECC1F0024F366 /* DataService.swift in Sources */,
