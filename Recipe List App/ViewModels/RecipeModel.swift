@@ -60,6 +60,7 @@ class RecipeModel: ObservableObject {
                 num += wholePortion * den
             
             }
+            
             // calculate the correct amount
             amount = calculatePortion(num: num, den: den, recipeServings: recipeServings, targetServings: targetServings)
     
@@ -125,6 +126,23 @@ class RecipeModel: ObservableObject {
         
         return portion
     }
+    
+    
+    static func getHighlights(highlights:[String]) -> String {
+        
+        var highlightsString: String = ""
+        var separator: String
+                
+        for i in 0..<highlights.count {
+            
+            separator = i < highlights.count-1 ? ", " : ""
+            
+            highlightsString += highlights[i] + separator
+        }
+        
+        return highlightsString
+    }
+    
 }
 
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipeDetailView: View {
     
     var recipe: Recipe
+    var paddingTop: Double?
     
     @State private var selectedServingsSize:Int = 2
     
@@ -17,11 +18,17 @@ struct RecipeDetailView: View {
         
         ScrollView {
             
-            VStack {
+            VStack (alignment: .leading) {
+                
+                Text(recipe.name)
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+
              
                 Text(recipe.description)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
+                    .padding([.horizontal, .bottom])
                 
                 // MARK: Recipe image
                 Image(recipe.image)
@@ -89,9 +96,10 @@ struct RecipeDetailView: View {
                 .padding(16)
                 
             }
-            .padding(.top, 12.0)
+            .padding(.top, paddingTop ?? 0)
+
         }
-        .navigationBarTitle(recipe.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

@@ -1,7 +1,7 @@
 [
    {
       "name":"Eggplant Parmesan",
-      "featured":true,
+      "featured":false,
       "image":"eggplant parmesan",
       "description":"Baked eggplant with bread crumbs and lots of cheese. Delicious!",
       "prepTime":"25 minutes",
@@ -125,7 +125,7 @@
    },
    {
       "name":"Baked Teriyaki Chicken",
-      "featured":false,
+      "featured":true,
       "image":"chicken teriyaki",
       "description":"A sweet and savory favourite.",
       "prepTime":"30 minutes",
@@ -193,7 +193,7 @@
    },
    {
       "name":"Lasagna",
-      "featured":false,
+      "featured":true,
       "image":"lasagna",
       "description":"Layers of goodness in this cheesy delight.",
       "prepTime":"30 minutes",
@@ -314,7 +314,7 @@
    },
    {
       "name":"Pad Thai",
-      "featured":true,
+      "featured":false,
       "image":"pad thai",
       "description":"A delicious noodle dish!",
       "prepTime":"15 minutes",
@@ -552,9 +552,4 @@
          "Bake stuffed potatoes until golden brown on top, 20 to 30 minutes."
       ]
    }
-   
-   
-   
-   
-   
 ]

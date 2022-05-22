@@ -17,7 +17,7 @@ struct RecipeListView: View {
             
             VStack(alignment: .leading) {
                 
-                Text("All recipes")
+                Text("Recipes")
                     .font(.largeTitle)
                     .bold()
                 
@@ -37,19 +37,26 @@ struct RecipeListView: View {
                                             .clipped()
                                             .cornerRadius(8)
                                         
-                                        Text(r.name)
-                                            .foregroundColor(.black)
+                                        VStack (alignment: .leading, spacing: 4){
+                                            Text(r.name)
+                                                .bold()
+    
+                                            Text(RecipeModel.getHighlights(highlights: r.highlights))
+                                                .font(.caption)
+                                        }
+                                        .foregroundColor(.black)
                                     }
                                 }
                             )
-                            
                         }
                         .navigationBarHidden(true)
                     }
                     
                 }
+
             }
             .padding(.horizontal)
+            .padding(.top, 32)
         }
         .navigationViewStyle(.stack)
         
