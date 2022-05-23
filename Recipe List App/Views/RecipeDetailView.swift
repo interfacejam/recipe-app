@@ -21,12 +21,12 @@ struct RecipeDetailView: View {
             VStack (alignment: .leading) {
                 
                 Text(recipe.name)
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
-
-             
+                    .largeTitleStyle()
+                    .padding([.top, .horizontal])
+                    .padding(.bottom, 8)
+            
                 Text(recipe.description)
+                    .bodyRegularStyle()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding([.horizontal, .bottom])
                 
@@ -41,7 +41,7 @@ struct RecipeDetailView: View {
                     VStack(alignment: .leading) {
                         
                         Text("Select your serving size:")
-                            .font(.callout)
+                            .caption1Style()
                         
                         Picker("Select servings", selection: $selectedServingsSize) {
                             Text("2").tag(2)
@@ -55,8 +55,7 @@ struct RecipeDetailView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Ingredients")
-                            .font(.title)
-                            .fontWeight(.semibold)
+                            .titleStyle()
                             .padding(.bottom, 4.0)
                         
                         
@@ -66,6 +65,7 @@ struct RecipeDetailView: View {
                                 Text("•")
                                 Text(RecipeModel.getPortion(ingredient: item, recipeServings: recipe.servings, targetServings: selectedServingsSize))
                             }
+                            .bodyRegularStyle()
                         }
                         
                     }
@@ -73,8 +73,7 @@ struct RecipeDetailView: View {
                     // MARK: Directions
                     VStack(alignment: .leading) {
                         Text("Method")
-                            .font(.title)
-                            .fontWeight(.semibold)
+                            .titleStyle()
                             .padding(.bottom, 4.0)
                         
                         
@@ -82,10 +81,10 @@ struct RecipeDetailView: View {
                             
                             HStack(alignment: .top, spacing: 16.0){
                                 Text(String(index + 1))
-                                    .font(.title2)
-                                    .fontWeight(.bold)
+                                    .bodyBoldStyle()
                                 
                                 Text(recipe.directions[index])
+                                    .bodyRegularStyle()
                             }
                             .padding(.bottom, 1)
                             

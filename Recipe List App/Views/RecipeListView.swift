@@ -15,11 +15,11 @@ struct RecipeListView: View {
         
         NavigationView {
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 24) {
                 
                 Text("Recipes")
-                    .font(.largeTitle)
-                    .bold()
+                    .largeTitleStyle()
+                
                 
                 ScrollView{
                     
@@ -37,12 +37,12 @@ struct RecipeListView: View {
                                             .clipped()
                                             .cornerRadius(8)
                                         
-                                        VStack (alignment: .leading, spacing: 4){
+                                        VStack (alignment: .leading, spacing: 0){
                                             Text(r.name)
-                                                .bold()
+                                                .bodyBoldStyle()
     
                                             Text(RecipeModel.getHighlights(highlights: r.highlights))
-                                                .font(.caption)
+                                                .caption1Style()
                                         }
                                         .foregroundColor(.black)
                                     }

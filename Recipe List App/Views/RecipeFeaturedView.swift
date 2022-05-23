@@ -20,8 +20,7 @@ struct RecipeFeaturedView: View {
         VStack (alignment: .leading, spacing: 0) {
             
             Text("Featured recipes")
-                .font(.largeTitle)
-                .bold()
+                .largeTitleStyle()
                 .padding(.horizontal)
             
             if isFeaturedContentAvailable != 0 {
@@ -46,7 +45,7 @@ struct RecipeFeaturedView: View {
                                         .frame(maxWidth: UIScreen.main.bounds.width - 32)
                                     
                                     Text(recipe.name)
-                                        .font(.headline)
+                                        .bodyBoldStyle()
                                         .padding()
                                 }
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -74,15 +73,24 @@ struct RecipeFeaturedView: View {
                     
                     let recipe = model.recipes[selectedPage]
                     
-                    Text("Preparation time")
-                        .font(.headline)
-                    
-                    Text(recipe.prepTime)
-                    
-                    Text("Highlights")
-                        .font(.headline)
-                    
-                    Text(RecipeModel.getHighlights(highlights: recipe.highlights))
+                    VStack (alignment: .leading) {
+                        Text("Preparation time")
+                            .bodyBoldStyle()
+                            
+                        
+                        Text(recipe.prepTime)
+                            .caption1Style()
+                        
+                        
+                    }
+                       
+                    VStack (alignment: .leading) {
+                        Text("Highlights")
+                            .bodyBoldStyle()
+                        
+                        Text(RecipeModel.getHighlights(highlights: recipe.highlights))
+                            .caption1Style()
+                    }
                 }
                 .padding([.horizontal, .bottom])
                 
