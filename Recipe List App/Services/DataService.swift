@@ -40,12 +40,9 @@ class DataService {
                 // Add the unique ID to the recipes
                 for r in 0..<recipeData.count {
                     recipeData[r].id = UUID()
-                    
-                    // Add the unique id  to the ingredients
-                    var ingredients = recipeData[r].ingredients
                 
-                    for i in 0..<ingredients.count {
-                        ingredients[i].id = UUID()
+                    for i in 0..<recipeData[r].ingredients.count {
+                        recipeData[r].ingredients[i].id = UUID()
                     }
                     
                 }

@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Ingredient: Identifiable, Decodable, Hashable {
+struct Ingredient: Identifiable, Decodable {
     
-    var id:UUID?
+    var id: UUID?
     var name: String
     var amount: String?
     var unit: String?
-    
+
 }

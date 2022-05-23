@@ -59,7 +59,7 @@ struct RecipeDetailView: View {
                             .padding(.bottom, 4.0)
                         
                         
-                        ForEach(recipe.ingredients, id: \.self){ item in
+                        ForEach(recipe.ingredients){ item in
                             
                             HStack(alignment: .top) {
                                 Text("•")
@@ -80,8 +80,8 @@ struct RecipeDetailView: View {
                         ForEach(0..<recipe.directions.count, id: \.self){ index in
                             
                             HStack(alignment: .top, spacing: 16.0){
-                                Text(String(index + 1))
-                                    .bodyBoldStyle()
+                                Image(systemName: "\(index + 1).circle.fill").imageScale(.large)
+                                    .foregroundColor(.gray)
                                 
                                 Text(recipe.directions[index])
                                     .bodyRegularStyle()
