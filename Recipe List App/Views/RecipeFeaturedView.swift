@@ -9,13 +9,16 @@ import SwiftUI
 
 struct RecipeFeaturedView: View {
     
-    @EnvironmentObject var model:RecipeModel
+    @EnvironmentObject var model: RecipeModel
     
-    @State private var selectedPage = 0
+    @State private var featuredRecipes: Bool = false
+    @State private var selectedFeaturedIndex = 0
     @State private var detailViewShown = false
-    @State private var isFeaturedContentAvailable = 0
     
     var body: some View {
+    
+        // Create an array of featured recipes
+        let featuredRecipes = model.recipes.filter({ $0.featured })
         
         VStack (alignment: .leading, spacing: 0) {
             
@@ -23,43 +26,39 @@ struct RecipeFeaturedView: View {
                 .largeTitleStyle()
                 .padding(.horizontal)
             
-            if isFeaturedContentAvailable != 0 {
+            // If there is at least one featured recipe
+            if !featuredRecipes.isEmpty {
                 
-                TabView(selection: $selectedPage) {
+                TabView(selection: $selectedFeaturedIndex) {
                     
-                    ForEach(0..<model.recipes.count, id:\.self) { r in
+                    ForEach(0..<featuredRecipes.count, id:\.self) { r in
                         
-                        let recipe = model.recipes[r]
+                        let recipe = featuredRecipes[r]
                         
-                        if recipe.featured {
-                            
-                            Button {
-                                detailViewShown = true
-                            } label: {
-                                // Recipe card
-                                VStack(spacing: 0) {
-                                    
-                                    Image(recipe.image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(maxWidth: UIScreen.main.bounds.width - 32)
-                                    
-                                    Text(recipe.name)
-                                        .bodyBoldStyle()
-                                        .padding()
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(.white)
-                                .cornerRadius(8)
-                                .padding([.horizontal, .top])
-                                .padding(.bottom, 48)
-                                .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.4), radius: 6, x: 0, y: 0)
+                        Button {
+                            detailViewShown = true
+                        } label: {
+                            // Recipe card
+                            VStack(spacing: 0) {
+                                
+                                Image(recipe.image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: UIScreen.main.bounds.width - 32)
+                                
+                                Text(recipe.name)
+                                    .bodyBoldStyle()
+                                    .padding()
                             }
-                            .buttonStyle(.plain)
-                            .sheet(isPresented: $detailViewShown) {
-                                RecipeDetailView(recipe: recipe, paddingTop: 24)
-                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(.white)
+                            .cornerRadius(8)
+                            .padding([.horizontal, .top])
+                            .padding(.bottom, 48)
+                            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.4), radius: 6, x: 0, y: 0)
                         }
+                        .buttonStyle(.plain)
+                       
                     }
                 }
                 .frame(maxHeight: UIScreen.main.bounds.height / 3 * 2)
@@ -71,14 +70,14 @@ struct RecipeFeaturedView: View {
                 
                 VStack (alignment: .leading, spacing: 8) {
                     
-                    let recipe = model.recipes[selectedPage]
+                    let selectedRecipe = featuredRecipes[selectedFeaturedIndex]
                     
                     VStack (alignment: .leading) {
                         Text("Preparation time")
                             .bodyBoldStyle()
                             
                         
-                        Text(recipe.prepTime)
+                        Text(selectedRecipe.prepTime)
                             .caption1Style()
                         
                         
@@ -88,7 +87,7 @@ struct RecipeFeaturedView: View {
                         Text("Highlights")
                             .bodyBoldStyle()
                         
-                        Text(RecipeModel.getHighlights(highlights: recipe.highlights))
+                        Text(model.getHighlights(highlights: selectedRecipe.highlights))
                             .caption1Style()
                     }
                 }
@@ -113,22 +112,11 @@ struct RecipeFeaturedView: View {
             }
         }
         .padding(.top, 32)
-        .onAppear(){
-            setFeaturedIndex()
+        .sheet(isPresented: $detailViewShown) {
+            
+            RecipeDetailView(recipe: featuredRecipes[selectedFeaturedIndex], paddingTop: 24)
         }
         
-    }
-    
-    func setFeaturedIndex() {
-        
-        // Find the index of the first recipe that is featured
-        let index = model.recipes.firstIndex { recipe in
-            return recipe.featured
-        }
-        // Update the selectedPage variable
-        selectedPage = index ?? 0
-        // Update this variable to check the existence of featured content
-        isFeaturedContentAvailable = index ?? 0
     }
     
     

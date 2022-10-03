@@ -1,7 +1,7 @@
 [
    {
       "name":"Eggplant Parmesan",
-      "featured":false,
+      "featured":true,
       "image":"eggplant parmesan",
       "description":"Baked eggplant with bread crumbs and lots of cheese. Delicious!",
       "prepTime":"25 minutes",
@@ -57,7 +57,7 @@
    },
    {
       "name":"Mushroom Risotto",
-      "featured":true,
+      "featured":false,
       "image":"mushroom risotto",
       "description":"Authentic Italian-style risotto cooked the slow and painful way, but oh so worth it. ",
       "prepTime":"20 minutes",
@@ -125,7 +125,7 @@
    },
    {
       "name":"Baked Teriyaki Chicken",
-      "featured":true,
+      "featured":false,
       "image":"chicken teriyaki",
       "description":"A sweet and savory favourite.",
       "prepTime":"30 minutes",
@@ -420,7 +420,7 @@
    },
    {
       "name":"Monterey Chicken",
-      "featured":true,
+      "featured":false,
       "image":"monterey chicken",
       "description":"Classic Monterey Chicken, worth the time!",
       "prepTime":"45 minutes",
@@ -477,7 +477,7 @@
    },
    {
       "name":"Twice-baked potatoes",
-      "featured":false,
+      "featured":true,
       "image":"baked potato",
       "description":"A fantastic starchy side.",
       "prepTime":"30 minutes",

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     
+    @EnvironmentObject var model: RecipeModel
+    
     var recipe: Recipe
     var paddingTop: Double?
     
@@ -63,7 +65,7 @@ struct RecipeDetailView: View {
                             
                             HStack(alignment: .top) {
                                 Text("•")
-                                Text(RecipeModel.getPortion(ingredient: item, recipeServings: recipe.servings, targetServings: selectedServingsSize))
+                                Text(model.getPortion(ingredient: item, recipeServings: recipe.servings, targetServings: selectedServingsSize))
                             }
                             .bodyRegularStyle()
                         }
@@ -77,13 +79,13 @@ struct RecipeDetailView: View {
                             .padding(.bottom, 4.0)
                         
                         
-                        ForEach(0..<recipe.directions.count, id: \.self){ index in
+                        ForEach(0..<recipe.directions.count, id: \.self){ i in
                             
                             HStack(alignment: .top, spacing: 16.0){
-                                Image(systemName: "\(index + 1).circle.fill").imageScale(.large)
+                                Image(systemName: "\(i + 1).circle.fill").imageScale(.large)
                                     .foregroundColor(.gray)
                                 
-                                Text(recipe.directions[index])
+                                Text(recipe.directions[i])
                                     .bodyRegularStyle()
                             }
                             .padding(.bottom, 1)
@@ -103,12 +105,13 @@ struct RecipeDetailView: View {
 }
 
 struct RecipeDetailView_Previews: PreviewProvider {
+    
     static var previews: some View {
         
         // added for building purposes
         let model = RecipeModel()
         
         RecipeDetailView(recipe: model.recipes[0])
-            .previewInterfaceOrientation(.portrait)
+            .environmentObject(model)
     }
 }

@@ -41,7 +41,7 @@ struct RecipeListView: View {
                                             Text(r.name)
                                                 .bodyBoldStyle()
     
-                                            Text(RecipeModel.getHighlights(highlights: r.highlights))
+                                            Text(model.getHighlights(highlights: r.highlights))
                                                 .caption1Style()
                                         }
                                         .foregroundColor(.black)

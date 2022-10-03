@@ -17,7 +17,7 @@ class RecipeModel: ObservableObject {
         self.recipes = DataService.getLocalData()
     }
     
-    static func getPortion(ingredient: Ingredient, recipeServings:String, targetServings:Int ) -> String {
+    func getPortion(ingredient: Ingredient, recipeServings:String, targetServings:Int ) -> String {
         
         var amount = ingredient.amount ?? ""
         let unit = ingredient.unit?.lowercased()
@@ -86,7 +86,7 @@ class RecipeModel: ObservableObject {
     
     //MARK: Calculate the portions
     
-    static private func calculatePortion(num:Int, den:Int, recipeServings: String, targetServings:Int) -> String {
+    private func calculatePortion(num:Int, den:Int, recipeServings: String, targetServings:Int) -> String {
         
         var wholePortion: Int = 0
         var num: Int = num
@@ -127,8 +127,7 @@ class RecipeModel: ObservableObject {
         return portion
     }
     
-    
-    static func getHighlights(highlights:[String]) -> String {
+    func getHighlights(highlights:[String]) -> String {
         
         var highlightsString: String = ""
         var separator: String
@@ -142,7 +141,7 @@ class RecipeModel: ObservableObject {
         
         return highlightsString
     }
-    
+
 }
 
 

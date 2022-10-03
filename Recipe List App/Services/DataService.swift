@@ -11,55 +11,39 @@ class DataService {
     
     static func getLocalData() -> [Recipe] {
         
-        // Parse local json file
+        let url = Bundle.main.url(forResource: "recipes", withExtension: "json")
         
-        // Get URL path to json file
-        let pathString = Bundle.main.path(forResource: "recipes", ofType: "json")
-                
-        
-        // Check if pathString is not nit, otherwise...
-        guard pathString != nil else {
-            // return and empty array
+        // Check if url is not nil
+        guard url != nil else {
+            print("JSON file not found")
+            
+            // Return an empty array
             return [Recipe]()
         }
         
-        let url = URL(fileURLWithPath: pathString!)
-
-        do{
-            // Create a data object
-            let data = try Data(contentsOf: url)
+        do {
             
-            // Create a JSON decoder
-            let decoder = JSONDecoder()
+            let data = try Data(contentsOf: url!)
             
-            // Decode json with a JSON decoder
+            var recipeData = try JSONDecoder().decode([Recipe].self, from: data)
             
-            do{
-                var recipeData = try decoder.decode([Recipe].self, from: data)
-                
-                // Add the unique ID to the recipes
-                for r in 0..<recipeData.count {
-                    recipeData[r].id = UUID()
-                
-                    for i in 0..<recipeData[r].ingredients.count {
-                        recipeData[r].ingredients[i].id = UUID()
-                    }
-                    
+            // Add the unique ID to the recipes
+            for r in 0..<recipeData.count {
+                recipeData[r].id = UUID()
+            
+                for i in 0..<recipeData[r].ingredients.count {
+                    recipeData[r].ingredients[i].id = UUID()
                 }
                 
-                // Return the recipes
-                return recipeData
-                
             }
-            catch {
-                print(error)
-            }
-            
+            // Return the recipes
+            return recipeData
         }
         catch {
-            print(error)
+            print("Error retrieving data: \(error.localizedDescription)")
         }
+        
+        // Return an empty array
         return [Recipe]()
     }
-    
 }
