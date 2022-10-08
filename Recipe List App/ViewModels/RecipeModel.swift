@@ -10,11 +10,18 @@ import Foundation
 class RecipeModel: ObservableObject {
     
     @Published var recipes = [Recipe]()
+    @Published var categories = Set<String>()
+    @Published var selectedCategory: String?
     
     init() {
              
         // Populate the array with the data
         self.recipes = DataService.getLocalData()
+        
+        // Populate categories set
+        self.categories = Set(recipes.map({ $0.category }))
+        self.categories.update(with: Constants.defaultListFilter)
+        
     }
     
     func getPortion(ingredient: Ingredient, recipeServings:String, targetServings:Int ) -> String {
@@ -141,7 +148,22 @@ class RecipeModel: ObservableObject {
         
         return highlightsString
     }
-
+    
+    func getCategoryImageName(category: String) -> String {
+        
+        var imageName = ""
+        
+        // Find the index of the first recipe in a given category
+        if let index = recipes.firstIndex(where: { $0.category == category }) {
+            imageName = recipes[index].image
+        }
+        else
+        {
+            imageName = Constants.defaultListFilter.lowercased()
+        }
+        
+        return imageName
+    }
 }
 
 
