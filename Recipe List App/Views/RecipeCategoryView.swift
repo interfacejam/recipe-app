@@ -24,13 +24,21 @@ struct RecipeCategoryView: View {
     var body: some View {
         
         NavigationView {
-            VStack(alignment: .leading, spacing: 16){
+            
+            VStack {
                 
                 GeometryReader { geometry in
                     
                     ScrollView(showsIndicators: false) {
                         
-                        LazyVGrid(columns: [GridItem(.flexible(), spacing: Constants.gridSpacing, alignment: .topLeading), GridItem(.flexible(), spacing: Constants.gridSpacing, alignment: .topLeading)], alignment: .leading) {
+                        let colums = [
+                            GridItem(spacing: Constants.gridSpacing),
+                                GridItem(spacing: 0)
+                            ]
+                        
+                        let categoryCardLabelHeight: CGFloat = 40
+                        
+                        LazyVGrid(columns: colums, spacing: Constants.gridSpacing) {
                             
                             ForEach(Array(model.categories.sorted()), id:\.self) { category in
                                 
@@ -44,29 +52,33 @@ struct RecipeCategoryView: View {
                                     
                                 }, label: {
                                     
-                                    
-                                    VStack {
+                                    VStack(spacing: 0) {
                                         
                                         Image(model.getCategoryImageName(category: category))
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
-                                            .frame(width: (geometry.size.width - Constants.gridSpacing)/2, height: (geometry.size.width - Constants.gridSpacing)/2)
+                                            .frame(width: ((geometry.size.width - Constants.gridSpacing * 2) / 2) - Constants.gridSpacing / 2,
+                                                   height: ((geometry.size.width - Constants.gridSpacing * 2) / 2) - (categoryCardLabelHeight + Constants.gridSpacing / 2))
                                             .clipped()
-                                            .cornerRadius(8)
-                                        
                                         
                                         Text(category)
+                                            .frame(height: categoryCardLabelHeight, alignment: .center)
+                                        
                                     }
+                                    .background(.white)
+                                    .cornerRadius(8)
+                                    .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.4), radius: 6, x: 0, y: 0)
                                 })
                                 .accentColor(.black)
                             }
                         }
+                        .padding(.horizontal)
+                        .padding(.top)
+
                     }
                 }
             }
             .navigationBarTitle(Text("Categories"))
-            .padding(.top)
-            .padding(.horizontal)
         }
     }
 }

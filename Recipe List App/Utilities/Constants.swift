@@ -15,5 +15,5 @@ struct Constants {
     static var categoriesTab = 1
     static var listTab = 2
     
-    static var gridSpacing: Double = 16
+    static var gridSpacing: CGFloat = 16
 }
