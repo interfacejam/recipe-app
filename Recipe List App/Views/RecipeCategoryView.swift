@@ -62,6 +62,7 @@ struct RecipeCategoryView: View {
                                             .clipped()
                                         
                                         Text(category)
+                                            .bodyBoldStyle()
                                             .frame(height: categoryCardLabelHeight, alignment: .center)
                                         
                                     }
@@ -82,6 +83,7 @@ struct RecipeCategoryView: View {
         }
     }
 }
+
 
 struct RecipeCategoryView_Previews: PreviewProvider {
     static var previews: some View {
