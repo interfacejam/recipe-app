@@ -13,6 +13,8 @@ struct RecipeTabView: View {
     
     @State var selectedTab = Constants.featuredTab
     
+    @State private var listID = UUID()
+    
     var body: some View {
         
         TabView(selection: $selectedTab) {
@@ -36,6 +38,15 @@ struct RecipeTabView: View {
                 .tag(Constants.categoriesTab)
             
             RecipeListView()
+                .id(listID)
+                .onChange(of: model.resetListView, perform: { value in
+                    if value == true {
+                        // reset current module
+                        listID = UUID()
+                        // reset the reset flat
+                        model.resetListView = false
+                    }
+                })
                 .tabItem {
                     VStack {
                         Image(systemName: "list.bullet")

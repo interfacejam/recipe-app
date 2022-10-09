@@ -11,7 +11,10 @@ class RecipeModel: ObservableObject {
     
     @Published var recipes = [Recipe]()
     @Published var categories = Set<String>()
-    @Published var selectedCategory: String?
+    @Published var selectedCategory = Constants.defaultListFilter
+    
+    // This allows to reset the list view to the first view rather than showing the detail one
+    @Published var resetListView = false
     
     init() {
              

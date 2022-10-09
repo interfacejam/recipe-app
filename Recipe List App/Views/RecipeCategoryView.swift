@@ -47,8 +47,12 @@ struct RecipeCategoryView: View {
                                     // Set selected category
                                     model.selectedCategory = category
                                     
+                                    // Reset list view
+                                    model.resetListView = true
+                                    
                                     // Switch tab to list view
                                     selectedTab = Constants.listTab
+                                    
                                     
                                 }, label: {
                                     

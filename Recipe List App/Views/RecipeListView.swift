@@ -12,23 +12,12 @@ struct RecipeListView: View {
     @EnvironmentObject var model:RecipeModel
     
     init() {
+        
         // Customize navigation bar font and size
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Avenir Heavy", size: 36)!]
         
         //Use this if NavigationBarTitle is with displayMode = .inline
         //UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 20)!]
-    }
-    
-    
-    private var title: String {
-        
-        if model.selectedCategory == nil || model.selectedCategory == Constants.defaultListFilter {
-            return "All recipes"
-        }
-        else
-        {
-            return model.selectedCategory!
-        }
     }
     
     var body: some View {
@@ -40,10 +29,10 @@ struct RecipeListView: View {
                 LazyVStack (alignment: .leading) {
                     ForEach(model.recipes) { r in
                         
-                        if model.selectedCategory == nil ||
-                            model.selectedCategory == Constants.defaultListFilter ||
-                            r.category == model.selectedCategory {
+                        if model.selectedCategory == Constants.defaultListFilter ||
                             
+                            r.category == model.selectedCategory {
+
                             NavigationLink(
                                 destination: RecipeDetailView(recipe: r),
                                 label: {
@@ -74,18 +63,16 @@ struct RecipeListView: View {
                 
             }
             .padding(.horizontal)
-            .navigationBarTitle(Text(title))
+            .navigationBarTitle(Text(model.selectedCategory))
             .navigationBarItems(
                 trailing:
                     Button(action: {
-                        model.selectedCategory = nil
+                        model.selectedCategory = Constants.defaultListFilter
                     }, label: {
-                        Text(model.selectedCategory == nil || model.selectedCategory == Constants.defaultListFilter ? "" : "Clear filters")
+                        Text(model.selectedCategory == Constants.defaultListFilter ? "" : "Clear filters")
                     })
             )
         }
-        //.navigationViewStyle(.stack)
-        
     }
 }
 
